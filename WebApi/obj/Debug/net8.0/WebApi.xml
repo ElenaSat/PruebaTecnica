@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:WebApi.Controllers.ProductsController.GetAllProducts">
+            <summary>
+            Obtiene una lista de todos los productos disponibles.
+            </summary>
+            <returns>Una lista de objetos Product.</returns>
+            <response code="200">Retorna la lista de productos.</response>
+        </member>
+        <member name="M:WebApi.Controllers.ProductsController.GetProductById(System.Int32)">
+            <summary>
+            Obtiene un producto específico por su identificador único.
+            </summary>
+            <param name="id">El ID del producto a buscar.</param>
+            <returns>El producto solicitado si se encuentra.</returns>
+            <response code="200">Retorna el producto encontrado.</response>
+            <response code="404">Si el producto con el ID especificado no se encuentra.</response>
+        </member>
+        <member name="M:WebApi.Controllers.ProductsController.CreateProduct(WebApi.Models.Product)">
+             <summary>
+             Crea un nuevo producto.
+             </summary>
+             <remarks>
+             Ejemplo de cuerpo de solicitud:
+            
+                 POST /api/products
+                 {
+                    "name": "Nuevo Producto",
+                    "price": 99.99,
+                    "quantity": 5
+                 }
+            
+             </remarks>
+             <param name="product">El objeto Producto a crear. Requiere Name, Price y Quantity.</param>
+             <returns>El producto creado con su nuevo ID.</returns>
+             <response code="201">Retorna el producto recién creado.</response>
+             <response code="400">Si el modelo de producto es inválido (ej. datos faltantes o incorrectos).</response>
+        </member>
+        <member name="M:WebApi.Controllers.ProductsController.UpdateProduct(System.Int32,WebApi.Models.Product)">
+             <summary>
+             Actualiza un producto existente por su ID.
+             </summary>
+             <remarks>
+             El ID en la URL debe coincidir con el ID del producto en el cuerpo de la solicitud.
+            
+                 PUT /api/products/1
+                 {
+                    "id": 1,
+                    "name": "Laptop Dell XPS (Actualizado)",
+                    "price": 1250.00,
+                    "quantity": 8
+                 }
+            
+             </remarks>
+             <param name="id">El ID del producto a actualizar.</param>
+             <param name="product">El objeto Product con los datos actualizados. El ID debe coincidir con el de la URL.</param>
+             <returns>Estado de la operación.</returns>
+             <response code="204">Si el producto fue actualizado exitosamente (no contenido).</response>
+             <response code="400">Si el ID de la URL no coincide con el ID del producto en el cuerpo, o el modelo es inválido.</response>
+             <response code="404">Si el producto con el ID especificado no se encuentra.</response>
+        </member>
+        <member name="M:WebApi.Controllers.ProductsController.DeleteProduct(System.Int32)">
+            <summary>
+            Elimina un producto existente por su ID.
+            </summary>
+            <param name="id">El ID del producto a eliminar.</param>
+            <returns>Estado de la operación.</returns>
+            <response code="204">Si el producto fue eliminado exitosamente (no contenido).</response>
+            <response code="404">Si el producto con el ID especificado no se encuentra.</response>
+        </member>
+        <member name="T:WebApi.Models.Product">
+            <summary>
+            Representa un producto en el sistema.
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.Product.Id">
+            <summary>
+            El identificador único del producto.
+            </summary>
+            <example>1</example>
+        </member>
+        <member name="P:WebApi.Models.Product.Name">
+            <summary>
+            El nombre del producto.
+            </summary>
+            <example>Laptop Dell XPS</example>
+        </member>
+        <member name="P:WebApi.Models.Product.Price">
+            <summary>
+            El precio unitario del producto. Debe ser mayor que cero.
+            </summary>
+            <example>1200.50</example>
+        </member>
+        <member name="P:WebApi.Models.Product.Quantity">
+            <summary>
+            La cantidad disponible del producto en stock. Debe ser al menos 1.
+            </summary>
+            <example>10</example>
+        </member>
+    </members>
+</doc>
