@@ -51,7 +51,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Product> GetProductById(int id) // Método síncrono
         {
-            var product = _products.FirstOrDefault(p => p.Id == id); // Busca el producto por ID
+            var product = _products.FirstOrDefault(vproduct => vproduct.Id == id); // Busca el producto por ID
 
             if (product == null)
             {
@@ -147,7 +147,7 @@ namespace WebApi.Controllers
             }
 
             // Buscar y actualizar el producto en la lista en memoria
-            var existingProduct = _products.FirstOrDefault(p => p.Id == id);
+            var existingProduct = _products.FirstOrDefault(vproduct => vproduct.Id == id);
             if (existingProduct == null)
             {
                 return NotFound($"Producto con ID {id} no encontrado para actualizar.");
@@ -177,7 +177,7 @@ namespace WebApi.Controllers
         public IActionResult DeleteProduct(int id) // Método síncrono
         {
             // Buscar y eliminar el producto de la lista en memoria
-            var productToRemove = _products.FirstOrDefault(p => p.Id == id);
+            var productToRemove = _products.FirstOrDefault(vproduct => vproduct.Id == id);
             if (productToRemove == null)
             {
                 return NotFound($"Producto con ID {id} no encontrado para eliminar.");
